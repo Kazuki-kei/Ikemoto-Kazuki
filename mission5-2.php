@@ -215,7 +215,7 @@
        
     ?>
             
-    <form action="mission5-1.php" method="post">
+    <form action="mission5-2.php" method="post">
         【投稿フォーム】
         <br>
         名前：<input type="text" name="name"  placeholder = "名前" value="<?php if(!empty($data_name)) {echo $data_name;} ?>">
