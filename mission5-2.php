@@ -153,8 +153,10 @@
     //編集されたものの書き換え
     else if(!empty($_POST["name"]) && !empty($_POST["str"]) && !empty($_POST["num"]) && !empty($_POST["pass"])){
         $id = $_POST["num"]; //変更する投稿番号
-	    $name = $_POST["name"];
+	$name = $_POST["name"];
         $comment = $_POST["str"]; //変更したい名前、変更したいコメントは自分で決めること
+	$date = new DATETIME();
+        $date = $date -> format('Y-m-d H:i:s');
         $pass = $_POST["pass"];
 
          //パスワードのためにデータレコードの抽出
@@ -177,11 +179,12 @@
         if($edit_pass==$pass){
 
             //変更したい投票番号とパスワードが一致しているのならば
-	        $sql = 'UPDATE mission5 SET name=:name,comment=:comment WHERE id=:id';
+	        $sql = 'UPDATE mission5 SET name=:name,comment=:comment,date=:date WHERE id=:id';
 	        $stmt = $pdo->prepare($sql);
 	        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
 	        $stmt->bindParam(':comment', $comment, PDO::PARAM_STR);
 	        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		$stmt->bindParam(':date', $date, PDO::PARAM_STR);
             
         
         }
